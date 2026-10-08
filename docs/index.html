@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08111f">
+<title>My US English Coach</title>
+<style>
+:root{--bg:#08111f;--card:#111c2f;--line:#263958;--text:#f8fafc;--muted:#9fb0c8;--blue:#60a5fa;--green:#34d399;--red:#fb7185;--yellow:#fbbf24}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#07101d,#0a1220);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",sans-serif;padding-bottom:88px;min-height:100vh}
+main{max-width:720px;margin:auto;padding:18px 16px 30px}.page{display:none}.page.active{display:block}.hero,.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px}.hero{background:linear-gradient(135deg,#172554,#0f766e)}
+h1{font-size:26px;margin:5px 0 10px}h2{font-size:18px;margin:0 0 12px}.k{font-size:12px;color:#bfdbfe;font-weight:800;letter-spacing:.08em}.dday{font-size:44px;font-weight:900}.small{font-size:12px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.stat{background:var(--card);border:1px solid var(--line);padding:14px;border-radius:18px}.stat b{display:block;font-size:23px;margin-top:4px}.section{margin-top:16px}.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.between{display:flex;align-items:center;justify-content:space-between;gap:10px}
+button,input{font:inherit}.btn{border:0;border-radius:13px;padding:12px 14px;background:var(--blue);color:#07111f;font-weight:800;cursor:pointer}.btn.alt{background:#1e293b;color:#e5eefb;border:1px solid #334155}.btn.good{background:var(--green);color:#052e16}.btn.bad{background:#401c29;color:#fecdd3;border:1px solid #7f1d1d}.btn.warn{background:var(--yellow);color:#302000}.btn.full{width:100%}.btn:disabled{opacity:.45}
+.item{display:flex;justify-content:space-between;gap:10px;align-items:center;border:1px solid var(--line);background:#0d1728;border-radius:13px;padding:12px;margin-top:8px}.word{font-size:34px;font-weight:900;margin:12px 0 4px}.meaning{font-size:18px;color:#dbeafe}.example{margin-top:14px;padding:13px;border-radius:14px;background:#0b1323}.pill{display:inline-block;padding:6px 10px;border-radius:999px;background:#0d2039;border:1px solid #284463;color:#bfdbfe;font-size:12px;font-weight:800}
+.scenarios{display:grid;grid-template-columns:1fr 1fr;gap:10px}.scenario{background:#17263d;border:1px solid var(--line);border-radius:16px;padding:15px;color:white;text-align:left}.scenario strong{display:block;margin-bottom:5px}.chat{display:flex;flex-direction:column;gap:10px;margin:13px 0}.bubble{max-width:88%;padding:12px 14px;border-radius:17px;line-height:1.45}.ai{align-self:flex-start;background:#1e293b}.me{align-self:flex-end;background:#1d4ed8}.hint{font-size:13px;color:#93c5fd;margin:8px 0}.feedback{margin-top:10px;background:#10211b;border:1px solid #22563f;border-radius:14px;padding:12px;color:#d1fae5}.input{width:100%;padding:13px;border-radius:13px;background:#0a1323;border:1px solid #334155;color:#fff}
+.notice{padding:11px 13px;border-radius:13px;background:#10213b;border:1px solid #29486f;color:#dbeafe;font-size:12px;line-height:1.5;margin-bottom:12px}.recordbox{margin-top:12px;padding:14px;border:1px solid #334155;border-radius:16px;background:#0b1323}.transcript{margin-top:10px;padding:11px;border-radius:12px;background:#07101d;color:#dbeafe;min-height:44px}audio{width:100%;margin-top:10px}.hidden{display:none!important}
+nav{position:fixed;left:0;right:0;bottom:0;background:rgba(7,12,22,.96);border-top:1px solid #24324b}nav .bar{max-width:720px;margin:auto;display:grid;grid-template-columns:repeat(5,1fr);padding:7px}.tab{background:none;border:0;color:#718096;padding:6px 2px;font-size:11px}.tab span{display:block;font-size:19px}.tab.active{color:#fff;font-weight:800}
+</style>
+</head>
+<body>
+<main>
+<section id="home" class="page active">
+<div class="hero"><div class="k">MY US ENGLISH COACH</div><h1>미국 여행 영어</h1><div class="dday" id="dday">D-</div><div>출국일 2027.05.23</div></div>
+<div class="grid"><div class="stat"><span class="small">학습 단어</span><b id="sw">0</b></div><div class="stat"><span class="small">회화 완료</span><b id="st">0</b></div><div class="stat"><span class="small">복습 단어</span><b id="sr">0</b></div><div class="stat"><span class="small">준비도</span><b id="ready">0%</b></div></div>
+<div class="section card"><h2>오늘 할 일</h2><div class="item"><div><b>단어 10개</b><div class="small">원어민 음성으로 듣기</div></div><button class="btn" data-go="vocab">시작</button></div><div class="item"><div><b>AI 역할극</b><div class="small">듣기·말하기·녹음</div></div><button class="btn good" data-go="talk">회화</button></div><div class="item"><div><b>복습</b><div class="small">틀린 단어 다시 보기</div></div><button class="btn alt" data-go="review">복습</button></div></div>
+</section>
+
+<section id="vocab" class="page">
+<div class="between"><div><div class="k">VOCAB</div><h1>오늘의 단어</h1></div><span class="pill"><span id="vi">1</span>/10</span></div>
+<div class="card"><span id="vc" class="pill"></span><div id="vw" class="word"></div><div id="vm" class="meaning"></div><div id="ve" class="example"></div>
+<div class="row" style="margin-top:12px"><button id="listenWord" class="btn alt">🔊 듣기</button><button id="toggleMeaning" class="btn alt">👀 뜻 가리기</button></div>
+<div class="row" style="margin-top:12px"><button id="no" class="btn bad" style="flex:1">아직 몰라요</button><button id="yes" class="btn good" style="flex:1">알아요 ✓</button></div></div>
+</section>
+
+<section id="talk" class="page">
+<div class="k">VOICE ROLEPLAY</div><h1>여행 회화</h1>
+<div class="notice">처음 마이크를 누르면 권한을 허용해줘. 녹음 파일은 서버에 업로드하지 않고 이 화면에서만 재생해.</div>
+<div id="scenarios" class="scenarios"></div>
+<div id="talkBox" class="card hidden">
+<div class="between"><span id="talkTitle" class="pill"></span><button id="back" class="btn alt">상황 선택</button></div>
+<div id="chat" class="chat"></div><div id="hint" class="hint"></div>
+<div class="row"><button id="listenQ" class="btn alt">🔊 질문 듣기</button><button id="speechInput" class="btn good">🎤 말해서 입력</button></div>
+<div class="recordbox"><div class="between"><div><b>내 목소리 녹음</b><div class="small">내 발음을 다시 들어보세요</div></div><span id="recStatus" class="small">대기 중</span></div>
+<div class="row" style="margin-top:10px"><button id="recStart" class="btn warn">⏺ 녹음 시작</button><button id="recStop" class="btn bad" disabled>⏹ 녹음 종료</button></div><audio id="player" controls class="hidden"></audio></div>
+<div id="transcript" class="transcript">음성인식 결과가 여기에 표시돼요.</div>
+<input id="answer" class="input" style="margin-top:10px" placeholder="직접 입력해도 됩니다"><button id="send" class="btn full" style="margin-top:10px">답변 보내기</button><div id="feedback"></div>
+</div>
+</section>
+
+<section id="review" class="page"><div class="k">REVIEW</div><h1>복습</h1><div class="card"><h2>다시 볼 단어</h2><div id="reviewWords"></div></div><div class="section card"><h2>생존 필수문장</h2><div id="sentences"></div></div></section>
+<section id="progress" class="page"><div class="k">PROGRESS</div><h1>내 기록</h1><div class="card"><div class="dday" id="bigReady" style="font-size:52px">0%</div><div class="small">여행 영어 준비도</div><div class="item"><span>학습 단어</span><b id="pw">0</b></div><div class="item"><span>복습 단어</span><b id="pr">0</b></div><div class="item"><span>완료 회화</span><b id="pt">0</b></div></div></section>
+</main>
+
+<nav><div class="bar"><button class="tab active" data-page="home"><span>🏠</span>홈</button><button class="tab" data-page="vocab"><span>🧠</span>단어</button><button class="tab" data-page="talk"><span>🗣️</span>회화</button><button class="tab" data-page="review"><span>🔁</span>복습</button><button class="tab" data-page="progress"><span>📈</span>기록</button></div></nav>
+
+<script>
+(function(){
+const words=[['boarding pass','탑승권','Can I see your boarding pass?','Airport'],['baggage','수하물','Where can I pick up my baggage?','Airport'],['aisle seat','통로 좌석','Could I have an aisle seat?','Airport'],['customs','세관','Where is customs?','Airport'],['reservation','예약','I have a reservation.','Hotel'],['check-in','체크인',"I'd like to check in.",'Hotel'],['receipt','영수증','Could I get a receipt?','Shopping'],['recommend','추천하다','What do you recommend?','Restaurant'],['refill','리필','Could I get a refill?','Restaurant'],['directions','길 안내','Could you give me directions?','Travel']];
+const survival=["Could you say that again?","Could you speak a little slower?","I didn't catch that.","Where is the restroom?","Could you help me?","I'd like to check in.","Can I pay by card?","What do you recommend?","How much is this?","I'm here for vacation."];
+const scenarios=[
+{title:'🛂 입국심사',id:'immigration',turns:[['What is the purpose of your visit?','💡 여행하러 왔어요.',['vacation','travel','tourism'],"I'm here for vacation."],['How long will you be staying?','💡 일주일 있을 거예요.',['week','seven','7'],"I'll be staying for a week."],['Where will you be staying?','💡 호텔에 머물 거예요.',['hotel'],"I'll be staying at a hotel."]]},
+{title:'🏨 호텔 체크인',id:'hotel',turns:[['Do you have a reservation?','💡 네, 제 이름으로 예약했어요.',['reservation','yes'],"Yes, I have a reservation under my name."],['May I see your passport?','💡 네, 여기 있습니다.',['here','sure','yes'],"Sure, here you go."],['Would you like one key or two?','💡 두 개 주세요.',['two','2'],"Two, please."]]},
+{title:'🍔 식당 주문',id:'restaurant',turns:[['Are you ready to order?','💡 네, 치킨 샌드위치 주세요.',['chicken','sandwich'],"Yes, I'll have the chicken sandwich."],['What would you like to drink?','💡 물 주세요.',['water'],"Water, please."],['Anything else?','💡 아니요, 이게 다예요.',['no','all'],"No, that's all. Thank you."]]},
+{title:'☕ 카페',id:'cafe',turns:[['What can I get for you?','💡 아이스 아메리카노 주세요.',['americano','coffee','iced'],"Can I get an iced Americano, please?"],['What size would you like?','💡 미디엄으로 주세요.',['medium'],"Medium, please."],['For here or to go?','💡 가지고 갈게요.',['go'],"To go, please."]]}
+];
+const $=id=>document.getElementById(id);
+let state;try{state=JSON.parse(localStorage.getItem('coach')||'{}')}catch(e){state={}};state.known=state.known||[];state.review=state.review||[];state.done=state.done||[];
+let wi=0,hidden=false,sc=null,ti=0,lastQ='',mediaRecorder=null,chunks=[];
+
+function save(){try{localStorage.setItem('coach',JSON.stringify(state))}catch(e){}refresh()}
+function go(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.page===id));if(id==='review')renderReview();if(id==='progress')refresh();scrollTo(0,0)}
+document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>go(b.dataset.page));document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go(b.dataset.go));
+
+function speak(t){if(!('speechSynthesis'in window)){alert('이 브라우저는 음성 재생을 지원하지 않아요.');return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=.86;speechSynthesis.speak(u)}
+function renderWord(){const w=words[wi];$('vi').textContent=wi+1;$('vc').textContent=w[3];$('vw').textContent=w[0];$('vm').textContent=hidden?'••••••':w[1];$('ve').textContent=w[2]}
+$('listenWord').onclick=()=>speak(words[wi][0]+'. '+words[wi][2]);$('toggleMeaning').onclick=()=>{hidden=!hidden;renderWord()};
+function mark(ok){const n=words[wi][0];if(ok){if(!state.known.includes(n))state.known.push(n);state.review=state.review.filter(x=>x!==n)}else if(!state.review.includes(n))state.review.push(n);wi=(wi+1)%words.length;hidden=false;save();renderWord()}
+$('yes').onclick=()=>mark(true);$('no').onclick=()=>mark(false);
+
+function renderScenarios(){$('scenarios').innerHTML='';scenarios.forEach((s,i)=>{const b=document.createElement('button');b.className='scenario';b.innerHTML='<strong>'+s.title+'</strong><span class="small">초급 · 3문장</span>';b.onclick=()=>startScenario(i);$('scenarios').appendChild(b)})}
+function startScenario(i){sc=scenarios[i];ti=0;$('scenarios').classList.add('hidden');$('talkBox').classList.remove('hidden');$('talkTitle').textContent=sc.title;$('chat').innerHTML='';$('feedback').innerHTML='';nextTurn()}
+function nextTurn(){if(ti>=sc.turns.length){$('hint').textContent='🎉 완료!';$('feedback').innerHTML='<div class="feedback"><b>상황 연습 완료!</b></div>';if(!state.done.includes(sc.id))state.done.push(sc.id);save();return}const t=sc.turns[ti];lastQ=t[0];const d=document.createElement('div');d.className='bubble ai';d.textContent=t[0];$('chat').appendChild(d);$('hint').textContent=t[1];speak(t[0])}
+$('back').onclick=()=>{sc=null;$('talkBox').classList.add('hidden');$('scenarios').classList.remove('hidden')};$('listenQ').onclick=()=>lastQ&&speak(lastQ);
+$('send').onclick=submit;$('answer').onkeydown=e=>{if(e.key==='Enter')submit()};
+function submit(){if(!sc||ti>=sc.turns.length)return;const ans=$('answer').value.trim();if(!ans)return;const m=document.createElement('div');m.className='bubble me';m.textContent=ans;$('chat').appendChild(m);$('answer').value='';const t=sc.turns[ti],low=ans.toLowerCase(),hit=t[2].some(k=>low.includes(k));$('feedback').innerHTML='<div class="feedback"><b>'+(hit?'좋아요! ✅':'이렇게 말하면 더 자연스러워요.')+'</b><br>'+t[3]+'</div>';ti++;setTimeout(nextTurn,500)}
+
+$('speechInput').onclick=()=>{const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){alert('이 브라우저는 음성인식을 지원하지 않아요. Chrome에서 다시 시도하거나 직접 입력해 주세요.');return}const r=new SR();r.lang='en-US';r.interimResults=false;$('speechInput').textContent='🎙️ 듣는 중...';r.onresult=e=>{const text=e.results[0][0].transcript;$('answer').value=text;$('transcript').textContent=text};r.onend=()=>{$('speechInput').textContent='🎤 말해서 입력'};r.onerror=()=>{$('speechInput').textContent='🎤 말해서 입력'};r.start()};
+
+$('recStart').onclick=async()=>{if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){alert('이 브라우저는 녹음을 지원하지 않아요.');return}try{const stream=await navigator.mediaDevices.getUserMedia({audio:true});chunks=[];mediaRecorder=new MediaRecorder(stream);mediaRecorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};mediaRecorder.onstop=()=>{const blob=new Blob(chunks,{type:mediaRecorder.mimeType||'audio/webm'});$('player').src=URL.createObjectURL(blob);$('player').classList.remove('hidden');$('recStatus').textContent='녹음 완료';stream.getTracks().forEach(t=>t.stop())};mediaRecorder.start();$('recStatus').textContent='● 녹음 중';$('recStart').disabled=true;$('recStop').disabled=false}catch(e){alert('마이크 권한을 허용해 주세요.')}}
+$('recStop').onclick=()=>{if(mediaRecorder&&mediaRecorder.state!=='inactive'){mediaRecorder.stop();$('recStart').disabled=false;$('recStop').disabled=true}};
+
+function renderReview(){$('reviewWords').innerHTML=state.review.length?'':'<div class="small">복습할 단어가 아직 없어요.</div>';state.review.forEach(n=>{const w=words.find(x=>x[0]===n);if(!w)return;const d=document.createElement('div');d.className='item';d.innerHTML='<div><b>'+w[0]+'</b><div class="small">'+w[1]+'</div></div><button class="btn alt">🔊</button>';d.querySelector('button').onclick=()=>speak(w[0]);$('reviewWords').appendChild(d)});$('sentences').innerHTML='';survival.forEach(s=>{const d=document.createElement('div');d.className='item';d.innerHTML='<span>'+s+'</span><button class="btn alt">🔊</button>';d.querySelector('button').onclick=()=>speak(s);$('sentences').appendChild(d)})}
+function readiness(){return Math.round(Math.min(100,state.known.length/words.length*45+state.done.length/scenarios.length*55))}
+function refresh(){const r=readiness();$('sw').textContent=state.known.length;$('st').textContent=state.done.length;$('sr').textContent=state.review.length;$('ready').textContent=r+'%';$('bigReady').textContent=r+'%';$('pw').textContent=state.known.length;$('pr').textContent=state.review.length;$('pt').textContent=state.done.length;const days=Math.ceil((new Date('2027-05-23T00:00:00+09:00')-new Date())/86400000);$('dday').textContent=days>=0?'D-'+days:'D+'+Math.abs(days)}
+renderWord();renderScenarios();renderReview();refresh();
+})();
+</script>
+</body>
+</html>
